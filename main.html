@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY VALENTINES!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff0f2;
+        }
+
+        .image-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        .expanded {
+            transform: scale(1.8);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            z-index: 1;
+        }
+
+        .show-overlay {
+            display: block;
+        }
+
+    .btn{
+        background: #E7AFD0;
+        border: transparent;
+        color: white;
+        align-items: center;
+        margin: 20px 0 20px;
+    }
+    .btn:hover{
+        background: #C5ADEB;
+        transition: .9s;
+        color: #3f3f3f;
+        border: transparent;
+    }
+    .btn-primary{
+        font-family: "Roboto Mono";
+        font-size: larger;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay" id="overlay"></div>
+
+    <img src="i2 na.gif" alt="" class="image-container" id="expandableImage">
+    
+    <script>
+        const image = document.getElementById("expandableImage");
+        const overlay = document.getElementById("overlay");
+
+        // Image sources
+        const firstImage = "https://i.pinimg.com/originals/b4/df/8d/b4df8da8defe7bc7ae65c390f1d2e08d.gif";
+        const secondImage = "https://i.pinimg.com/736x/79/05/b0/7905b021ca264bcba0b3b91d835962f2.jpg"; // Example alternate image
+
+        let isExpanded = false; // Track state
+
+        image.addEventListener("click", function() {
+            isExpanded = !isExpanded; // Toggle state
+
+            this.classList.toggle("expanded");
+
+            // Swap images
+            this.src = isExpanded ? secondImage : firstImage;
+            this.style.width = "500px";
+        });
+
+        overlay.addEventListener("click", function() {
+            image.classList.remove("expanded");
+            overlay.classList.remove("show-overlay");
+            
+            // Toggle back to the previous state before click
+            isExpanded = !isExpanded; 
+            image.src = isExpanded ? secondImage : firstImage;
+        });
+    </script>
+
+</body>
+</html>
